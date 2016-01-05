@@ -1,5 +1,6 @@
 package appewtc.masterung.showpro;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -17,9 +18,19 @@ public class MainActivity extends AppCompatActivity {
         objManagTABLE = new ManagTABLE(this);
 
         //Test Add Value
-        testAddValue();
+        //testAddValue();
+
+        //Delete All SQLite
+        deleteAllSQLite();
 
     }   // Main Method
+
+    private void deleteAllSQLite() {
+        SQLiteDatabase objSqLiteDatabase = openOrCreateDatabase(MyOpenHelper.DATABASE_NAME,
+                MODE_PRIVATE, null);
+        objSqLiteDatabase.delete(ManagTABLE.TABLE_USER, null, null);
+        objSqLiteDatabase.delete(ManagTABLE.TABLE_promotion, null, null);
+    }
 
     private void testAddValue() {
         objManagTABLE.addNewValueToUser("testUser", "testPassword",
