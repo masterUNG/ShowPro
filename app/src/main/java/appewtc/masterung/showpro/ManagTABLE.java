@@ -42,6 +42,28 @@ public class ManagTABLE {
 
     }   // Constructor
 
+    public long addNewValueToPromotion(String strPromotion,
+                                       String strCondition,
+                                       String strStart,
+                                       String strEnd,
+                                       String strPlace,
+                                       String strLat,
+                                       String strLng,
+                                       String strReward) {
+
+        ContentValues objContentValues = new ContentValues();
+        objContentValues.put(COLUMN_NamePromotion, strPromotion);
+        objContentValues.put(COLUMN_Condition, strCondition);
+        objContentValues.put(COLUMN_TimeStart, strStart);
+        objContentValues.put(COLUMN_TimeEnd, strEnd);
+        objContentValues.put(COLUMN_Place, strPlace);
+        objContentValues.put(COLUMN_Lat, strLat);
+        objContentValues.put(COLUMN_Lng, strLng);
+        objContentValues.put(COLUMN_Reward, strReward);
+
+        return writeSqLiteDatabase.insert(TABLE_promotion, null, objContentValues);
+    }
+
     public long addNewValueToUser(String strUser,
                                   String strPassword,
                                   String strName,
