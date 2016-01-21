@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -46,11 +47,11 @@ public class RegisterActivity extends AppCompatActivity {
         addressString = addressEditText.getText().toString().trim();
         emailString = emailEditText.getText().toString().trim();
 
-        if (checkSpace()) {
+        if (checkSpace() || checkUser()) {
             //Have Space
             MyAlertDialog objMyAlertDialog = new MyAlertDialog();
             objMyAlertDialog.myDialog(RegisterActivity.this, R.drawable.icon_question,
-                    "มีช่องว่าง", "กรุณากรองให้ครบ ทุกช่องคะ");
+                    "มีช่องว่าง หรือ User ซ้ำ", "กรุณากรองให้ครบ ทุกช่อง หรือ User ซ้ำ");
 
         } else {
             //No Space
@@ -59,6 +60,25 @@ public class RegisterActivity extends AppCompatActivity {
         }   // if
 
     }   // clickSaveData
+
+    private boolean checkUser() {
+
+        boolean bolStatus;
+
+        try {
+
+            ManagTABLE objManagTABLE = new ManagTABLE(this);
+            String[] myResultStrings = objManagTABLE.searchUser(userString);
+            Log.d("showPro", "Name = " + myResultStrings[3]);
+            bolStatus = true;
+
+        } catch (Exception e) {
+            bolStatus = false;
+        }
+
+
+        return bolStatus;
+    }
 
     private void confirmRegister() {
 

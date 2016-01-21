@@ -2,6 +2,7 @@ package appewtc.masterung.showpro;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
@@ -41,6 +42,39 @@ public class ManagTABLE {
         readSqLiteDatabase = objMyOpenHelper.getReadableDatabase();
 
     }   // Constructor
+
+    public String[] searchUser(String strUser) {
+
+        try {
+
+            String[] resultStrings = null;
+            Cursor objCursor = readSqLiteDatabase.query(TABLE_USER,
+                    new String[] {COLUMN_id, COLUMN_User, COLUMN_Password,
+                            COLUMN_Name, COLUMN_Surname, COLUMN_Address,
+                            COLUMN_Email, COLUMN_Point},
+                    COLUMN_User + "=?",
+                    new String[]{String.valueOf(strUser)},
+                    null, null, null, null);
+
+            if (objCursor != null) {
+                if (objCursor.moveToFirst()) {
+
+                    resultStrings = new String[objCursor.getColumnCount()];
+                    for (int i=0;i<objCursor.getColumnCount();i++) {
+                        resultStrings[i] = objCursor.getString(i);
+                    }   // for
+
+                }   // if2
+            }   // if1
+            objCursor.close();
+            return resultStrings;
+
+        } catch (Exception e) {
+            return null;
+        }
+
+        //return new String[0];
+    }
 
     public long addNewValueToPromotion(String strPromotion,
                                        String strCondition,
