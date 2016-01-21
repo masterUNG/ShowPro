@@ -1,5 +1,7 @@
 package appewtc.masterung.showpro;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -42,10 +44,40 @@ public class RegisterActivity extends AppCompatActivity {
 
         } else {
             //No Space
+            confirmRegister();
 
         }   // if
 
     }   // clickSaveData
+
+    private void confirmRegister() {
+
+        AlertDialog.Builder objBuilder = new AlertDialog.Builder(this);
+        objBuilder.setIcon(R.drawable.icon_myaccount);
+        objBuilder.setTitle("โปรดตรวจสอบข้อมูล");
+        objBuilder.setMessage("User = " + userString + "\n" +
+                                "Password = " + passwordString + "\n" +
+                                "Name = " + nameString + "\n" +
+                                "Surname = " + surnameString + "\n" +
+                                "Address = " + addressString + "\n" +
+                                "Email = " + emailString);
+        objBuilder.setPositiveButton("Comfirm", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //Update to mySQL
+
+                dialogInterface.dismiss();
+            }
+        });
+        objBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        objBuilder.show();
+
+    }   // confirmRegister
 
     private boolean checkSpace() {
         return userString.equals("") ||
