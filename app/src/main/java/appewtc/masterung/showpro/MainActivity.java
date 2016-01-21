@@ -7,6 +7,7 @@ import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -24,11 +25,16 @@ public class MainActivity extends AppCompatActivity {
 
     //Explicit
     private ManagTABLE objManagTABLE;
+    private EditText userEditText, passwordEditText;
+    private String userString, passwordString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Bind Widget
+        bindWidget();
 
         //Connected Database
         objManagTABLE = new ManagTABLE(this);
@@ -43,6 +49,60 @@ public class MainActivity extends AppCompatActivity {
         synJSONtoSQLite();
 
     }   // Main Method
+
+    public void clickLogin(View view) {
+
+        userString = userEditText.getText().toString().trim();
+        passwordString = passwordEditText.getText().toString().trim();
+
+        if (userString.equals("") || passwordString.equals("")) {
+            //Have Space
+            MyAlertDialog objMyAlertDialog = new MyAlertDialog();
+            objMyAlertDialog.myDialog(MainActivity.this,
+                    R.drawable.icon_question, "มีช่องว่าง", "กรุณากรอกทุกช่อง คะ");
+        } else {
+            //No Space
+            checkUser();
+
+        }
+
+    }   // clickLogin
+
+    private void checkUser() {
+
+        try {
+
+            String[] myResultStrings = objManagTABLE.searchUser(userString);
+            Log.d("showPro", "Welcome ==> " + myResultStrings[3]);
+
+            //Check Password
+            if (passwordString.equals(myResultStrings[2])) {
+                //Password True
+
+
+            } else {
+                //Password False
+                MyAlertDialog objMyAlertDialog = new MyAlertDialog();
+                objMyAlertDialog.myDialog(MainActivity.this, R.drawable.icon_myaccount,
+                        "Password False", "กรุณาลองใหม่ คุณพิมพ์ Password ผิด");
+
+
+            }   // if
+
+        } catch (Exception e) {
+            MyAlertDialog objMyAlertDialog = new MyAlertDialog();
+            objMyAlertDialog.myDialog(MainActivity.this,
+                    R.drawable.icon_myaccount,
+                    "ไม่มี User", "ไม่มี " + userString + " ใน ฐานข้อมูล ของเรา") ;
+        }
+
+    }   // checkUser
+
+
+    private void bindWidget() {
+        userEditText = (EditText) findViewById(R.id.editText);
+        passwordEditText = (EditText) findViewById(R.id.editText2);
+    }
 
     private void synJSONtoSQLite() {
 
