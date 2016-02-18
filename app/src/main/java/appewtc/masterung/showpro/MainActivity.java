@@ -114,12 +114,16 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(myThreadPolicy);
 
         int intTimes = 1;
-        while (intTimes <= 2) {
+        while (intTimes <= 3) {
 
             //1. Create InputStream
             InputStream objInputStream = null;
+
+            //URL of Access JSON
             String strURLuser = "http://swiftcodingthai.com/mac/php_get_data_master.php";
             String strURLpromote = "http://swiftcodingthai.com/mac/php_get_promote_master.php";
+            String strURLreward = "http://swiftcodingthai.com/mac/php_get_reward_max.php";
+
             HttpPost objHttpPost = null;
             String tag = "showPro";
 
@@ -132,6 +136,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 2:
                         objHttpPost = new HttpPost(strURLpromote);
+                        break;
+                    case 3:
+                        objHttpPost = new HttpPost(strURLreward);
                         break;
                 }   // switch
 
@@ -198,6 +205,16 @@ public class MainActivity extends AppCompatActivity {
                                 strStart, strEnd, strPlace, strLat, strLng, strReward);
 
                         break;
+
+                    case 3:
+
+                        //For rewardTABLE
+                        String strRewardName = jsonObject.getString(ManagTABLE.COLUMN_Reward_Name);
+                        String strUserPoint = jsonObject.getString(ManagTABLE.COLUMN_Use_Point);
+                        objManagTABLE.addReward(strRewardName, strUserPoint);
+
+                        break;
+
                 }   // switch
                 }   // for
 
@@ -223,6 +240,7 @@ public class MainActivity extends AppCompatActivity {
                 MODE_PRIVATE, null);
         objSqLiteDatabase.delete(ManagTABLE.TABLE_USER, null, null);
         objSqLiteDatabase.delete(ManagTABLE.TABLE_promotion, null, null);
+        objSqLiteDatabase.delete(ManagTABLE.TABLE_USER, null, null);
     }
 
     private void testAddValue() {
