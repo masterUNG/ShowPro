@@ -240,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
                 MODE_PRIVATE, null);
         objSqLiteDatabase.delete(ManagTABLE.TABLE_USER, null, null);
         objSqLiteDatabase.delete(ManagTABLE.TABLE_promotion, null, null);
-        objSqLiteDatabase.delete(ManagTABLE.TABLE_USER, null, null);
+        objSqLiteDatabase.delete(ManagTABLE.TABLE_REWARD, null, null);
     }
 
     private void testAddValue() {
