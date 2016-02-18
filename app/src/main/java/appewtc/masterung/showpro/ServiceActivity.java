@@ -1,5 +1,7 @@
 package appewtc.masterung.showpro;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -23,7 +25,29 @@ public class ServiceActivity extends AppCompatActivity {
         //Show View
         showView();
 
+        //Create ListView
+        createListView();
+
     }   // Main Method
+
+    private void createListView() {
+
+        //Connected Database
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.DATABASE_NAME,
+                MODE_PRIVATE, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + ManagTABLE.TABLE_REWARD, null);
+        cursor.moveToFirst();
+        int[] iconInts = new int[cursor.getCount()];
+        String[] nameRewardStrings = new String[cursor.getCount()];
+        String[] pointRewardStrings = new String[cursor.getCount()];
+
+        for (int i=0;i<cursor.getCount();i++) {
+
+            
+
+        }   // for
+
+    }   // createListView
 
     private void showView() {
 
