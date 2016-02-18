@@ -32,6 +32,11 @@ public class MyOpenHelper extends SQLiteOpenHelper{
             "Lng text, " +
             "Reward text);";
 
+    private static final String CREATE_REWARD_TABLE = "create table rewardTABLE (" +
+            "_id integer primary key, " +
+            "Reward_Name text, " +
+            "Use_Point text);";
+
 
     public MyOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -41,6 +46,7 @@ public class MyOpenHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_USER_TABLE);
         sqLiteDatabase.execSQL(CREATE_PROMOTION_TABLE);
+        sqLiteDatabase.execSQL(CREATE_REWARD_TABLE);
     }
 
     @Override
