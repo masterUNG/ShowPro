@@ -36,6 +36,7 @@ public class ManagTABLE {
     public static final String TABLE_REWARD = "rewardTABLE";
     public static final String COLUMN_Reward_Name = "Reward_Name";
     public static final String COLUMN_Use_Point = "Use_Point";
+    public static final String COLUMN_Pict_Reward = "Pict_Reward";
 
 
     public ManagTABLE(Context context) {
@@ -48,11 +49,13 @@ public class ManagTABLE {
     }   // Constructor
 
     public long addReward(String strRewardName,
-                          String strUsePoint) {
+                          String strUsePoint,
+                          String strPictReward) {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_Reward_Name, strRewardName);
         contentValues.put(COLUMN_Use_Point, strUsePoint);
+        contentValues.put(COLUMN_Pict_Reward, strPictReward);
 
         return writeSqLiteDatabase.insert(TABLE_REWARD, null, contentValues);
     }

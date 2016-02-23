@@ -35,7 +35,8 @@ public class MyOpenHelper extends SQLiteOpenHelper{
     private static final String CREATE_REWARD_TABLE = "create table rewardTABLE (" +
             "_id integer primary key, " +
             "Reward_Name text, " +
-            "Use_Point text);";
+            "Use_Point text, " +
+            "Pict_Reward);";
 
 
     public MyOpenHelper(Context context) {
