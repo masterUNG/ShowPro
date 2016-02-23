@@ -1,10 +1,12 @@
 package appewtc.masterung.showpro;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class PromotionActivity extends AppCompatActivity {
@@ -54,6 +56,16 @@ public class PromotionActivity extends AppCompatActivity {
         PromoteAdapter promoteAdapter = new PromoteAdapter(PromotionActivity.this,
                 picPromotion, namePromotion, startPromotion, endPromotion);
         promotionListView.setAdapter(promoteAdapter);
+
+        promotionListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Intent intent = new Intent(PromotionActivity.this, DetailPromotionActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
 
     }   // createListView
