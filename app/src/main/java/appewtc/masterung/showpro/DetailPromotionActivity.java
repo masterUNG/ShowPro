@@ -21,6 +21,7 @@ public class DetailPromotionActivity extends FragmentActivity implements OnMapRe
     private String[] resultStrings;
     private TextView namePromoteTextView, placeTextView,
             startTextView, endTextView, conditionTextView;
+    private LatLng[] makerLatLngs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,11 @@ public class DetailPromotionActivity extends FragmentActivity implements OnMapRe
             resultStrings[i] = cursor.getString(i);
             Log.d("23Feb", "resultStrings[" + i + "] = " + resultStrings[i]);
 
+//            double douLat = Double.parseDouble(resultStrings[7]);
+//            double douLng = Double.parseDouble(resultStrings[8]);
+//
+//            makerLatLngs[i] = new LatLng(douLat, douLng);
+
         }   // for
         cursor.close();
 
@@ -95,6 +101,13 @@ public class DetailPromotionActivity extends FragmentActivity implements OnMapRe
 
         LatLng centerLatLng = new LatLng(douLatCenter, douLngCenter);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centerLatLng, 15));
+
+        //For Create Marker
+//        for (int i=0;i<makerLatLngs.length;i++) {
+//
+//            mMap.addMarker(new MarkerOptions().position(makerLatLngs[i]));
+//
+//        }   // for
 
 
     }   // onMapReady
