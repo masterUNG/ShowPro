@@ -25,6 +25,7 @@ public class MyOpenHelper extends SQLiteOpenHelper{
             "_id integer primary key, " +
             "NamePromotion text, " +
             "Condition text, " +
+            "PictPromotion text, " +
             "TimeStart text, " +
             "TimeEnd text, " +
             "Place text, " +

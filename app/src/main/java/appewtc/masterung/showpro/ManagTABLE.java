@@ -26,6 +26,7 @@ public class ManagTABLE {
     public static final String COLUMN_Point = "Point";
     public static final String COLUMN_NamePromotion = "NamePromotion";
     public static final String COLUMN_Condition = "Condition";
+    public static final String COLUMN_PictPromotion = "PictPromotion";
     public static final String COLUMN_TimeStart = "TimeStart";
     public static final String COLUMN_TimeEnd = "TimeEnd";
     public static final String COLUMN_Place = "Place";
@@ -95,6 +96,7 @@ public class ManagTABLE {
 
     public long addNewValueToPromotion(String strPromotion,
                                        String strCondition,
+                                       String strPic,
                                        String strStart,
                                        String strEnd,
                                        String strPlace,
@@ -105,6 +107,7 @@ public class ManagTABLE {
         ContentValues objContentValues = new ContentValues();
         objContentValues.put(COLUMN_NamePromotion, strPromotion);
         objContentValues.put(COLUMN_Condition, strCondition);
+        objContentValues.put(COLUMN_PictPromotion, strPic);
         objContentValues.put(COLUMN_TimeStart, strStart);
         objContentValues.put(COLUMN_TimeEnd, strEnd);
         objContentValues.put(COLUMN_Place, strPlace);

@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
             //URL of Access JSON
             String strURLuser = "http://swiftcodingthai.com/mac/php_get_data_master.php";
-            String strURLpromote = "http://swiftcodingthai.com/mac/php_get_promote_master.php";
+            String strURLpromote = "http://swiftcodingthai.com/mac/php_get_promot_max.php";
             String strURLreward = "http://swiftcodingthai.com/mac/php_get_reward_max.php";
 
             HttpPost objHttpPost = null;
@@ -195,13 +195,14 @@ public class MainActivity extends AppCompatActivity {
                         //For promotionTABLE
                         String strPromotion = jsonObject.getString(ManagTABLE.COLUMN_NamePromotion);
                         String strCondition = jsonObject.getString(ManagTABLE.COLUMN_Condition);
+                        String strPic = jsonObject.getString(ManagTABLE.COLUMN_PictPromotion);
                         String strStart = jsonObject.getString(ManagTABLE.COLUMN_TimeStart);
                         String strEnd = jsonObject.getString(ManagTABLE.COLUMN_TimeEnd);
                         String strPlace = jsonObject.getString(ManagTABLE.COLUMN_Place);
                         String strLat = jsonObject.getString(ManagTABLE.COLUMN_Lat);
                         String strLng = jsonObject.getString(ManagTABLE.COLUMN_Lng);
                         String strReward = jsonObject.getString(ManagTABLE.COLUMN_Reward);
-                        objManagTABLE.addNewValueToPromotion(strPromotion, strCondition,
+                        objManagTABLE.addNewValueToPromotion(strPromotion, strCondition, strPic,
                                 strStart, strEnd, strPlace, strLat, strLng, strReward);
 
                         break;
@@ -247,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
     private void testAddValue() {
         objManagTABLE.addNewValueToUser("testUser", "testPassword",
                 "testName", "testSurname", "testAddress", "testEmail", "testPoint");
-        objManagTABLE.addNewValueToPromotion("Promote", "Condition", "Start", "End",
+        objManagTABLE.addNewValueToPromotion("Promote", "Condition", "Pic", "Start", "End",
                 "Place", "Lat", "Lng", "Reward");
     }
 
