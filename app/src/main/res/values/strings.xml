@@ -11,5 +11,6 @@
     <string name="address">Address :</string>
     <string name="email">Email :</string>
     <string name="save">Save Data</string>
+    <string name="title_activity_detail_promotion">Map</string>
 
 </resources>
