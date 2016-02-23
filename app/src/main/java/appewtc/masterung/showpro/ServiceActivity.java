@@ -35,17 +35,28 @@ public class ServiceActivity extends AppCompatActivity {
         //Connected Database
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.DATABASE_NAME,
                 MODE_PRIVATE, null);
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + ManagTABLE.TABLE_REWARD, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + ManagTABLE.TABLE_REWARD,
+                null);
         cursor.moveToFirst();
-        int[] iconInts = new int[cursor.getCount()];
+        int[] iconSmallInts = new int[cursor.getCount()];
         String[] nameRewardStrings = new String[cursor.getCount()];
         String[] pointRewardStrings = new String[cursor.getCount()];
+        String[] iconStrings = new String[cursor.getCount()];
 
         for (int i=0;i<cursor.getCount();i++) {
 
-            
+            iconSmallInts[i] = R.drawable.true1; //เดี๋ยวกลับมาแก้นะ
+            nameRewardStrings[i] = cursor.getString(cursor.getColumnIndex(ManagTABLE.COLUMN_Reward_Name));
+            pointRewardStrings[i] = cursor.getString(cursor.getColumnIndex(ManagTABLE.COLUMN_Use_Point));
+            iconStrings[i] = cursor.getString(cursor.getColumnIndex(ManagTABLE.COLUMN_Pict_Reward));
 
+            cursor.moveToNext();
         }   // for
+        cursor.close();
+
+        RewardAdapter rewardAdapter = new RewardAdapter(ServiceActivity.this, iconStrings,
+                nameRewardStrings, pointRewardStrings, iconSmallInts);
+        rewardListView.setAdapter(rewardAdapter);
 
     }   // createListView
 
