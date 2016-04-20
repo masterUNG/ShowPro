@@ -50,6 +50,16 @@ public class MainActivity extends AppCompatActivity {
 
     }   // Main Method
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        deleteAllSQLite();
+
+        synJSONtoSQLite();
+
+    }
+
     public void clickLogin(View view) {
 
         userString = userEditText.getText().toString().trim();
